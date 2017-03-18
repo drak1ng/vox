@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="../css/index.css" />
+        <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+        <title>Vox</title>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="../js/cordova.js"></script>
+	</head>
+    <body>
+	    <div data-role="page" style="background:#FFF;">
+		    <div class="topo">
+			    <div class="logotipo">
+				    <div style="min-width:10px; float:left;" id="bt_busca_categorias_voltar"></div>
+				    <div style="margin:0px 70px; text-align:center" id="busca_categorias_titulo"></div>
+				</div>
+		    </div>
+		    
+		    <div class="botoes-rodape">
+			    <div class="botoes-rodape-bloco2" id="bt_rodape_buscar_01" style="background-image:url(../img/icone_01_on.png);"></div>
+			    <div class="botoes-rodape-bloco1" id="bt_rodape_buscar_02" style="background-image:url(../img/icone_02.png);"></div>
+			    <div class="botoes-rodape-bloco1" id="bt_rodape_buscar_03" style="background-image:url(../img/icone_03.png);"></div>
+			    <div class="botoes-rodape-bloco1" id="bt_rodape_buscar_04" style="background-image:url(../img/icone_04.png);"></div>
+		    </div>
+
+			<div role="main" class="ui-content">
+				<div style="text-align:center; padding:8px 0px 49px 0px; color:#999; font-size:14px; text-transform:none; text-align:justify; margin:0px -16px;">
+					<div id="listagem_resultados"></div>
+				    <div class="lista-categorias" id="bt_categoria_automoveis" style="background-image:url(../img/categoria_01.png);"><div class="categoria-quantidade" id="quantidade_busca_automoveis">123</div><span id="bt_categoria_automoveis_legenda"></span></div>
+					<div class="lista-categorias" id="bt_categoria_caminhoes" style="background-image:url(../img/categoria_02.png);"><div class="categoria-quantidade" id="quantidade_busca_caminhoes">123</div><span id="bt_categoria_caminhoes_legenda"></span></div>
+					<div class="lista-categorias" id="bt_categoria_onibus" style="background-image:url(../img/categoria_03.png);"><div class="categoria-quantidade" id="quantidade_busca_onibus">123</div><span id="bt_categoria_onibus_legenda"></span></div>
+					<div class="lista-categorias" id="bt_categoria_tratores" style="background-image:url(../img/categoria_04.png);"><div class="categoria-quantidade" id="quantidade_busca_tratores">123</div><span id="bt_categoria_tratores_legenda"></span></div>
+					<div class="lista-categorias" id="bt_categoria_motocicletas" style="background-image:url(../img/categoria_05.png);"><div class="categoria-quantidade" id="quantidade_busca_motocicletas">123</div><span id="bt_categoria_motocicletas_legenda"></span></div>
+					<div class="lista-categorias" id="bt_categoria_maquinas_equipamentos" style="background-image:url(../img/categoria_06.png);"><div class="categoria-quantidade" id="quantidade_busca_maquinas">123</div><span id="bt_categoria_maquinas_equipamentos_legenda"></span></div>
+					<div class="lista-categorias" id="bt_categoria_conversao_direta" style="background-image:url(../img/categoria_07.png); display:none;"><div class="categoria-quantidade" id="quantidade_busca_conversoes">123</div><span id="bt_categoria_conversao_direta_legenda"></span></div>
+				</div>
+			</div>
+		
+			
+			<script>
+				
+				$('#bt_busca_categorias_voltar').html(window.localStorage.getItem('linguage_014'));
+				$('#busca_categorias_titulo').html(window.localStorage.getItem('linguage_030'));
+				
+				$('#bt_rodape_buscar_01').html(window.localStorage.getItem('linguage_031'));
+				$('#bt_rodape_buscar_02').html(window.localStorage.getItem('linguage_032'));
+				$('#bt_rodape_buscar_03').html(window.localStorage.getItem('linguage_033'));
+				$('#bt_rodape_buscar_04').html(window.localStorage.getItem('linguage_034'));
+				
+				$('#bt_categoria_automoveis_legenda').html(window.localStorage.getItem('linguage_037'));
+				$('#bt_categoria_caminhoes_legenda').html(window.localStorage.getItem('linguage_038'));
+				$('#bt_categoria_onibus_legenda').html(window.localStorage.getItem('linguage_039'));
+				$('#bt_categoria_tratores_legenda').html(window.localStorage.getItem('linguage_040'));
+				$('#bt_categoria_motocicletas_legenda').html(window.localStorage.getItem('linguage_041'));
+				$('#bt_categoria_maquinas_equipamentos_legenda').html(window.localStorage.getItem('linguage_042'));
+				$('#bt_categoria_conversao_direta_legenda').html(window.localStorage.getItem('linguage_043'));
+				
+				$("#bt_busca_categorias_voltar").click(function(){
+					$.mobile.changePage("catalogo_home.html", { transition: "none", changeHash: false });
+				});
+				
+				
+				var app_busca = window.localStorage.getItem('app_busca');
+				var app_busca_montadora = window.localStorage.getItem('app_busca_montadora');
+				
+				filtrarResgistros(app_busca,app_busca_montadora);
+		
+				
+				window.localStorage.setItem('voltar_busca','');
+					
+				//db.transaction(consultarRegistros);
+				
+				function consultarRegistros(tx){
+					tx.executeSql('SELECT * FROM db_equipamentos', [], listarRegistros, errorLISTA);
+				}
+				
+				function errorLISTA(err) {
+					alert("Error processing SQL: "+err.message);
+				}
+				
+				function listarRegistros(tx,result){
+					
+					var len = result.rows.length;
+					
+				    for (var i=0; i<len; i++){
+					    $('#listagem_resultados').append("<div style='border-bottom:1px solid #CCC; padding:10px;'>"+result.rows.item(i).id+" - "+result.rows.item(i).id_mont+"</div>");
+				    }
+				}
+				
+				function buscaFiltrar(){
+					var busca = $('#campo-busca-filtrar').val();
+					var busca_montadora = $('#campo-busca-montadoras').val();
+					window.localStorage.setItem('app_busca',busca);
+					window.localStorage.setItem('app_busca_montadora',busca_montadora);
+					filtrarResgistros(busca, busca_montadora);
+					$('#campo-busca-filtrar').blur();
+					return false;
+				}
+				
+				function filtrarResgistros(x,y){
+					db.transaction(filtrarAutomoveis);
+					db.transaction(filtrarCaminhoes);
+					db.transaction(filtrarOnibus);
+					db.transaction(filtrarTratores);
+					db.transaction(filtrarMotoclicletas);
+					db.transaction(filtrarMaquinasEquipamentos);
+					db.transaction(filtrarConversoes);
+
+					var add = "";
+
+					if(x!="" && x!=null){
+						add = window.localStorage.getItem('linguage_035') + ": " + x;
+					}
+					
+					if(x!="" && x!=null && y!="" && y!=null){
+						add = add + "<br>";
+					}
+					
+					if(y!="" && y!=null){
+						add = add + window.localStorage.getItem('linguage_036') + ": " + y;
+					}
+
+					$('#listagem_resultados').html(add);
+					$('#listagem_resultados').show();
+				}
+				
+				function filtrarAutomoveis(tx){
+					var busca = window.localStorage.getItem('app_busca');
+					var busca_montadora = window.localStorage.getItem('app_busca_montadora');
+					var where = "";
+					
+					if(busca!="" && busca!=null){ where = ' AND (id_mont LIKE "%'+busca+'%" OR modelo LIKE "%'+busca+'%" OR descricao LIKE "%'+busca+'%" OR motor LIKE "%'+busca+'%" OR ano_de LIKE "%'+busca+'%" OR ano_ate LIKE "%'+busca+'%" OR combustivel LIKE "%'+busca+'%" OR capacidade_carter LIKE "%'+busca+'%" OR ar_cabine LIKE "%'+busca+'%" OR local_loc LIKE "%'+busca+'%" OR ar_1 LIKE "%'+busca+'%" OR ar_2 LIKE "%'+busca+'%" OR lubrificante_1 LIKE "%'+busca+'%" OR lubrificante_2 LIKE "%'+busca+'%" OR diesel_1 LIKE "%'+busca+'%" OR diesel_2 LIKE "%'+busca+'%" OR direcao LIKE "%'+busca+'%" OR sedimentador LIKE "%'+busca+'%")'; }
+					if(busca_montadora!="" && busca_montadora!=null){ where = where + ' AND id_mont = "'+busca_montadora+'"'; }
+					
+					tx.executeSql('SELECT * FROM db_automoveis WHERE 1 ' + where, [], filtrarAutomoveisResultado, errorLISTA);
+				}
+				
+				function filtrarCaminhoes(tx){
+					var busca = window.localStorage.getItem('app_busca');
+					var busca_montadora = window.localStorage.getItem('app_busca_montadora');
+					var where = "";
+					
+					if(busca!="" && busca!=null){ where = ' AND (id_mont LIKE "%'+busca+'%" OR modelo LIKE "%'+busca+'%" OR descricao LIKE "%'+busca+'%" OR motor LIKE "%'+busca+'%" OR ano_de LIKE "%'+busca+'%" OR ano_ate LIKE "%'+busca+'%" OR combustivel LIKE "%'+busca+'%" OR capacidade_carter LIKE "%'+busca+'%" OR ar_cabine LIKE "%'+busca+'%" OR local_loc LIKE "%'+busca+'%" OR ar_1 LIKE "%'+busca+'%" OR ar_2 LIKE "%'+busca+'%" OR lubrificante_1 LIKE "%'+busca+'%" OR lubrificante_2 LIKE "%'+busca+'%" OR diesel_1 LIKE "%'+busca+'%" OR diesel_2 LIKE "%'+busca+'%" OR direcao LIKE "%'+busca+'%" OR sedimentador LIKE "%'+busca+'%" OR desumidificador LIKE "%'+busca+'%" OR agua LIKE "%'+busca+'%" OR bypass LIKE "%'+busca+'%" OR transmissao LIKE "%'+busca+'%" OR outros LIKE "%'+busca+'%" OR outros2 LIKE "%'+busca+'%" OR outros3 LIKE "%'+busca+'%")'; }
+					if(busca_montadora!="" && busca_montadora!=null){ where = where + ' AND id_mont = "'+busca_montadora+'"'; }
+					
+					tx.executeSql('SELECT * FROM db_caminhoes WHERE 1 ' + where, [], filtrarCaminhoesResultado, errorLISTA);
+				}
+				
+				function filtrarOnibus(tx){
+					var busca = window.localStorage.getItem('app_busca');
+					var busca_montadora = window.localStorage.getItem('app_busca_montadora');
+					var where = "";
+					
+					if(busca!="" && busca!=null){ where = ' AND (id_mont LIKE "%'+busca+'%" OR modelo LIKE "%'+busca+'%" OR descricao LIKE "%'+busca+'%" OR motor LIKE "%'+busca+'%" OR ano_de LIKE "%'+busca+'%" OR ano_ate LIKE "%'+busca+'%" OR combustivel LIKE "%'+busca+'%" OR capacidade_carter LIKE "%'+busca+'%" OR ar_cabine LIKE "%'+busca+'%" OR local_loc LIKE "%'+busca+'%" OR ar_1 LIKE "%'+busca+'%" OR ar_2 LIKE "%'+busca+'%" OR lubrificante_1 LIKE "%'+busca+'%" OR lubrificante_2 LIKE "%'+busca+'%" OR diesel_1 LIKE "%'+busca+'%" OR diesel_2 LIKE "%'+busca+'%" OR direcao LIKE "%'+busca+'%" OR sedimentador LIKE "%'+busca+'%" OR desumidificador LIKE "%'+busca+'%" OR agua LIKE "%'+busca+'%" OR bypass LIKE "%'+busca+'%" OR transmissao LIKE "%'+busca+'%" OR outros LIKE "%'+busca+'%" OR outros2 LIKE "%'+busca+'%" OR outros3 LIKE "%'+busca+'%")'; }
+					if(busca_montadora!="" && busca_montadora!=null){ where = where + ' AND id_mont = "'+busca_montadora+'"'; }
+					
+					tx.executeSql('SELECT * FROM db_onibus WHERE 1 ' + where, [], filtrarOnibusResultado, errorLISTA);
+				}
+				
+				function filtrarTratores(tx){
+					var busca = window.localStorage.getItem('app_busca');
+					var busca_montadora = window.localStorage.getItem('app_busca_montadora');
+					var where = "";
+					
+					if(busca!="" && busca!=null){ where = ' AND (id_mont LIKE "%'+busca+'%" OR modelo LIKE "%'+busca+'%" OR motor LIKE "%'+busca+'%" OR ano LIKE "%'+busca+'%" OR ar_1 LIKE "%'+busca+'%" OR ar_2 LIKE "%'+busca+'%" OR lubrificante LIKE "%'+busca+'%" OR combustivel_1 LIKE "%'+busca+'%" OR combustivel_2 LIKE "%'+busca+'%" OR direcao LIKE "%'+busca+'%" OR transmissao_int LIKE "%'+busca+'%" OR transmissao_ext LIKE "%'+busca+'%" OR outros LIKE "%'+busca+'%" OR outros2 LIKE "%'+busca+'%" OR outros3 LIKE "%'+busca+'%" OR capacidade_carter LIKE "%'+busca+'%")'; }
+					if(busca_montadora!="" && busca_montadora!=null){ where = where + ' AND id_mont = "'+busca_montadora+'"'; }
+					
+					tx.executeSql('SELECT * FROM db_tratores WHERE 1 ' + where, [], filtrarTratoresResultado, errorLISTA);
+				}
+				
+				function filtrarMotoclicletas(tx){
+					var busca = window.localStorage.getItem('app_busca');
+					var busca_montadora = window.localStorage.getItem('app_busca_montadora');
+					var where = "";
+					
+					if(busca!="" && busca!=null){ where = ' AND (id_mont LIKE "%'+busca+'%" OR modelo LIKE "%'+busca+'%" OR ano LIKE "%'+busca+'%" OR ar LIKE "%'+busca+'%" OR oleo LIKE "%'+busca+'%" OR combustivel LIKE "%'+busca+'%")'; }
+					if(busca_montadora!="" && busca_montadora!=null){ where = where + ' AND id_mont = "'+busca_montadora+'"'; }
+					
+					tx.executeSql('SELECT * FROM db_motocicletas WHERE 1 ' + where, [], filtrarMotoclicletasResultado, errorLISTA);
+				}
+				
+				function filtrarMaquinasEquipamentos(tx){
+					var busca = window.localStorage.getItem('app_busca');
+					var busca_montadora = window.localStorage.getItem('app_busca_montadora');
+					var where = "";
+					
+					if(busca!="" && busca!=null){ where = ' AND (id_mont LIKE "%'+busca+'%" OR modelo LIKE "%'+busca+'%" OR motor LIKE "%'+busca+'%" OR ano LIKE "%'+busca+'%" OR ar_1 LIKE "%'+busca+'%" OR ar_2 LIKE "%'+busca+'%" OR lubrificante LIKE "%'+busca+'%" OR bypass LIKE "%'+busca+'%" OR combustivel_1 LIKE "%'+busca+'%" OR combustivel_2 LIKE "%'+busca+'%" OR hidraulico LIKE "%'+busca+'%" OR direcao LIKE "%'+busca+'%" OR agua LIKE "%'+busca+'%" OR outros LIKE "%'+busca+'%" OR outros2 LIKE "%'+busca+'%" OR outros3 LIKE "%'+busca+'%" OR capacidade_carter LIKE "%'+busca+'%")'; }
+					if(busca_montadora!="" && busca_montadora!=null){ where = where + ' AND id_mont = "'+busca_montadora+'"'; }
+					
+					tx.executeSql('SELECT * FROM db_equipamentos WHERE 1 ' + where, [], filtrarMaquinasEquipamentosResultado, errorLISTA);
+				}
+				
+				function filtrarConversoes(tx){
+					var busca = window.localStorage.getItem('app_busca');
+					var busca_montadora = window.localStorage.getItem('app_busca_montadora');
+					var where = "";
+					
+					if(busca!="" && busca!=null){ where = ' AND (filtro LIKE "%'+busca+'%" OR concorrente LIKE "%'+busca+'%" OR codigo LIKE "%'+busca+'%")'; }
+					
+					tx.executeSql('SELECT * FROM db_conversoes WHERE 1 ' + where, [], filtrarConversoesResultado, errorLISTA);
+				}
+				
+				function filtrarAutomoveisResultado(tx,result){
+					var len = result.rows.length;
+					$('#quantidade_busca_automoveis').html(len);
+					$('#quantidade_busca_automoveis').show();
+				}
+				
+				function filtrarCaminhoesResultado(tx,result){
+					var len = result.rows.length;
+					$('#quantidade_busca_caminhoes').html(len);
+					$('#quantidade_busca_caminhoes').show();
+				}
+				
+				function filtrarOnibusResultado(tx,result){
+					var len = result.rows.length;
+					$('#quantidade_busca_onibus').html(len);
+					$('#quantidade_busca_onibus').show();
+				}
+				
+				function filtrarTratoresResultado(tx,result){
+					var len = result.rows.length;
+					$('#quantidade_busca_tratores').html(len);
+					$('#quantidade_busca_tratores').show();
+				}
+				
+				function filtrarMotoclicletasResultado(tx,result){
+					var len = result.rows.length;
+					$('#quantidade_busca_motocicletas').html(len);
+					$('#quantidade_busca_motocicletas').show();
+				}
+				
+				function filtrarMaquinasEquipamentosResultado(tx,result){
+					var len = result.rows.length;
+					$('#quantidade_busca_maquinas').html(len);
+					$('#quantidade_busca_maquinas').show();
+				}
+				
+				function filtrarConversoesResultado(tx,result){
+					var len = result.rows.length;
+					if(len>0){
+						$('#quantidade_busca_conversoes').html(len);
+						$('#quantidade_busca_conversoes').show();
+						$('#bt_categoria_conversao_direta').show();
+					}else{
+						$('#quantidade_busca_conversoes').html(len);
+						$('#quantidade_busca_conversoes').hide();
+						$('#bt_categoria_conversao_direta').hide();
+					}
+				}
+				
+				$("#bt_categoria_automoveis").click(function(){
+					window.localStorage.setItem('app_busca_tipo','automoveis');
+					$.mobile.changePage("catalogo_tabela.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_categoria_caminhoes").click(function(){
+					window.localStorage.setItem('app_busca_tipo','caminhoes');
+					$.mobile.changePage("catalogo_tabela.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_categoria_onibus").click(function(){
+					window.localStorage.setItem('app_busca_tipo','onibus');
+					$.mobile.changePage("catalogo_tabela.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_categoria_tratores").click(function(){
+					window.localStorage.setItem('app_busca_tipo','tratores');
+					$.mobile.changePage("catalogo_tabela.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_categoria_motocicletas").click(function(){
+					window.localStorage.setItem('app_busca_tipo','motocicletas');
+					$.mobile.changePage("catalogo_tabela.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_categoria_maquinas_equipamentos").click(function(){
+					window.localStorage.setItem('app_busca_tipo','maquinas_equipamentos');
+					$.mobile.changePage("catalogo_tabela.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_categoria_conversao_direta").click(function(){
+					window.localStorage.setItem('app_busca_tipo','conversao_direta');
+					$.mobile.changePage("catalogo_tabela.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_rodape_buscar_01").click(function(){
+					$.mobile.changePage("catalogo_home.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_rodape_buscar_02").click(function(){
+					$.mobile.changePage("catalogo_novidades.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_rodape_buscar_03").click(function(){
+					$.mobile.changePage("catalogo_mensagens.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_rodape_buscar_04").click(function(){
+					$.mobile.changePage("catalogo_contato.html", { transition: "none", changeHash: false });
+				});
+				
+				
+				
+			</script>
+		
+		</div>
+    </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="../css/index.css" />
+        <link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+        <title>Vox</title>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="../js/cordova.js"></script>
+	</head>
+    <body>
+	    <div data-role="page" style="background:#FFF;">
+		    <div class="topo">
+			    <div class="logotipo">
+				    <div style="margin:0px 70px; text-align:center" id="contato_titulo"></div>
+				</div>
+		    </div>
+		    
+		    <div class="botoes-rodape">
+			    <div class="botoes-rodape-bloco1" id="bt_rodape_contato_01" style="background-image:url(../img/icone_01.png);"></div>
+			    <div class="botoes-rodape-bloco1" id="bt_rodape_contato_02" style="background-image:url(../img/icone_02.png);"></div>
+			    <div class="botoes-rodape-bloco1" id="bt_rodape_contato_03" style="background-image:url(../img/icone_03.png);"></div>
+			    <div class="botoes-rodape-bloco2" id="bt_rodape_contato_04" style="background-image:url(../img/icone_04_on.png);"></div>
+		    </div>
+			
+			<div role="main" class="ui-content">
+				<div id="id_conteudo_contato" style="text-align:center; padding:40px 0px 0px 0px; color:#999; font-size:14px; text-transform:none; text-align:justify;">
+					<select id="contato_area"></select>
+					<input type="text" id="contato_empresa" placeholder="">
+					<input type="text" id="contato_nome" placeholder="">
+					<input type="email" id="contato_email" placeholder="">
+					<input type="tel" id="contato_telefone" placeholder="">
+					<textarea id="contato_mensagem" placeholder="" rows="20" style="min-height:200px"></textarea>
+					<div style="border:2px solid #000; border-radius:10px; background:#000; color:#FFF; padding:10px; margin-top:10px; text-shadow: none; text-transform:none; text-align:center;" id="bt_contato_enviar"></div>
+				</div>
+			</div>
+			
+			<br><br><br>
+		
+			
+			<script>
+
+				$('#contato_titulo').html(window.localStorage.getItem('linguage_044'));
+				
+				$('#bt_rodape_contato_01').html(window.localStorage.getItem('linguage_031'));
+				$('#bt_rodape_contato_02').html(window.localStorage.getItem('linguage_032'));
+				$('#bt_rodape_contato_03').html(window.localStorage.getItem('linguage_033'));
+				$('#bt_rodape_contato_04').html(window.localStorage.getItem('linguage_034'));
+				
+				$('#contato_area').html(window.localStorage.getItem('linguage_048'));
+				
+				$('#contato_empresa').attr('placeholder',window.localStorage.getItem('linguage_011'));
+				$('#contato_nome').attr('placeholder',window.localStorage.getItem('linguage_045'));
+				$('#contato_email').attr('placeholder',window.localStorage.getItem('linguage_002'));
+				$('#contato_telefone').attr('placeholder',window.localStorage.getItem('linguage_012'));
+				$('#contato_mensagem').attr('placeholder',window.localStorage.getItem('linguage_046'));
+				
+				$('#bt_contato_enviar').html(window.localStorage.getItem('linguage_047'));
+				
+				
+				
+				$('#contato_telefone').mask('(99) 9999-9999?9');
+				
+				$("#bt_contato_enviar").click(function(){
+					var area = $('#contato_area').val();
+					var nome = $('#contato_nome').val();
+					var empresa = $('#contato_empresa').val();
+					var telefone = $('#contato_telefone').val();
+					var email = $('#contato_email').val();
+					var mensagem = $('#contato_mensagem').val();
+					
+					if(area==""){ alert(window.localStorage.getItem('linguage_047')); return false; }
+					if(nome==""){ alert(window.localStorage.getItem('linguage_015')); return false; }
+					if(empresa==""){ alert(window.localStorage.getItem('linguage_016')); return false; }
+					if(telefone==""){ alert(window.localStorage.getItem('linguage_017')); return false; }
+					if(email==""){ alert(window.localStorage.getItem('linguage_007')); return false; }
+					if(mensagem==""){ alert(window.localStorage.getItem('linguage_050')); return false; }
+					
+					if(jaFicouOffline==0){
+						
+						$.get("http://homologacao.gruposofape.com.br/tecfil/catalogo/app_api/contato.php", { area:area, nome:nome, empresa:empresa, telefone:telefone, email:email, mensagem:mensagem }, function(data){
+							if(data=="OK"){
+								$.mobile.changePage("catalogo_contato_obrigado.html", { transition: "fade", changeHash: false });
+							}else{
+								alert(window.localStorage.getItem('linguage_051'));
+							}
+						});
+					
+					}else{
+						
+						alert(window.localStorage.getItem('linguage_052'));
+						
+					}
+					
+				});
+				
+				$("#bt_rodape_contato_01").click(function(){
+					$.mobile.changePage("catalogo_home.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_rodape_contato_02").click(function(){
+					$.mobile.changePage("catalogo_novidades.html", { transition: "none", changeHash: false });
+				});
+				
+				$("#bt_rodape_contato_03").click(function(){
+					$.mobile.changePage("catalogo_mensagens.html", { transition: "none", changeHash: false });
+				});
+				
+			</script>
+		
+		</div>
+    </body>
+</html>
