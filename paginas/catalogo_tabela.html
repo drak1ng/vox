@@ -89,13 +89,13 @@
 				$('#bt_tablea_voltar').html(window.localStorage.getItem('linguage_014'));
 				$('#tabela_titulo').html(window.localStorage.getItem('linguage_030'));
 				
-				//screen.lockOrientation('landscape');
+				screen.lockOrientation('landscape');
 
 				var app_busca = window.localStorage.getItem('app_busca');
 				var app_busca_montadora = window.localStorage.getItem('app_busca_montadora');
 				var app_busca_tipo = window.localStorage.getItem('app_busca_tipo');
 				
-				setTimeout(carregarTabela, 500);
+				setTimeout(carregarTabela, 1000);
 				
 				function carregarTabela(){
 	
@@ -612,7 +612,7 @@
 				});
 				
 				function tabela_voltar(){
-					//screen.lockOrientation('portrait');
+					screen.lockOrientation('portrait');
 					window.localStorage.setItem('voltar_busca','1');
 					$.mobile.changePage("catalogo_buscar.html", { transition: "none", changeHash: false });
 				}
@@ -626,7 +626,7 @@
 				}
 				
 				function tabela_voltarAplicacao(){
-					//screen.lockOrientation('portrait');
+					screen.lockOrientation('portrait');
 					$.mobile.changePage("catalogo_buscar.html", { transition: "none", changeHash: false });
 				}
 				
