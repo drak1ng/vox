@@ -628,6 +628,7 @@
 				
 				
 				function update_concluido(){
+					$('.db_in_update').hide();
 					$('.db_update').slideDown();
 					setTimeout(update_concluido_hide,4000);
 					window.localStorage.setItem('app_update','1');
