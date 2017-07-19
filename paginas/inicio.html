@@ -93,6 +93,8 @@
 				
 				function populateDB(tx) {
 					
+					$('.db_in_update').show();
+					
 					tx.executeSql('DROP TABLE IF EXISTS db_montadoras');
 					tx.executeSql('DROP TABLE IF EXISTS db_automoveis');
 					tx.executeSql('DROP TABLE IF EXISTS db_caminhoes');
